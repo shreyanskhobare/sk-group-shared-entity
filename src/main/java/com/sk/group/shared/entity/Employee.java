@@ -6,7 +6,8 @@ package com.sk.group.shared.entity;
 
 import java.io.Serializable;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -60,10 +61,12 @@ public class Employee implements Serializable {
 	@Builder.Default
 	private boolean employmentActive = true;
 	
-	@OneToOne (mappedBy = "employeeId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	@OneToOne (mappedBy = "employeeId", fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	private EmployeePersonalInfo employeePersonalInfo;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="ORGANIZATION_ID", nullable = false)
 	private OrganizationData organizationId;

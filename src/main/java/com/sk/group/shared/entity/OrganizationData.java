@@ -7,7 +7,8 @@ package com.sk.group.shared.entity;
 import java.io.Serializable;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -45,6 +46,7 @@ public class OrganizationData implements Serializable {
 	@Column(name = "ORGANIZATION_NAME", unique = true, nullable = true)
 	private String organizationName;
 	
-	@OneToMany(mappedBy = "organizationId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	@OneToMany(mappedBy = "organizationId", fetch = FetchType.LAZY)
 	private Set<Employee> employee;
 }

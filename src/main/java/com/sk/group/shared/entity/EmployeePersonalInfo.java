@@ -7,6 +7,8 @@ package com.sk.group.shared.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -58,6 +60,7 @@ public class EmployeePersonalInfo implements Serializable {
 	@Column(name="LEAVING_DATE", nullable=true)
 	private Date leavingDate;
 	
+	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "EMPLOYEE_ID", nullable = false)
 	private Employee employeeId;
